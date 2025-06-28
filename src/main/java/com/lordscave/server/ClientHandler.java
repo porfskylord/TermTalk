@@ -132,11 +132,20 @@ public class ClientHandler implements Runnable {
         } else {
             send("📬 Inbox:");
             for (String msg : messages) {
-                send("• " + msg);
+                String[] parts = msg.split(":", 2); // split metadata from content
+                String header = parts[0].trim();
+                String content = (parts.length > 1) ? parts[1].trim() : "";
+                String formatted =
+                        "──────────────────────────────\n" +
+                                "📨 " + header + "\n" +
+                                "💬 " + content + "\n";
+                send(formatted);
             }
             DBManager.markMessagesAsDelivered(userId);
         }
     }
+
+
 
     private void handleLogout() throws IOException {
         if (loggedIn) {

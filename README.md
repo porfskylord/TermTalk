@@ -17,14 +17,14 @@ Run the JAR on any system and chat instantly over a socket connection. Think of 
     ░     ░ ░  ░  ░▒ ░ ▒░░  ░      ░    ░      ▒   ▒▒ ░░ ░ ▒  ░░ ░▒ ▒░  
   ░         ░     ░░   ░ ░      ░     ░        ░   ▒     ░ ░   ░ ░░ ░   
             ░  ░   ░            ░                  ░  ░    ░  ░░  ░     
-────────────────────────────────────────────────────────────────────────
+-<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>-
 ```
 
 ---
 
 ## 📦 Tech Stack
 
-* **Java 17+**
+* **Java 21**
 * **Maven** (build tool)
 * **PostgreSQL** (for user & message storage)
 * **Multi-threaded Socket Server**
@@ -76,7 +76,6 @@ Run the JAR on any system and chat instantly over a socket connection. Think of 
 
 * Passwords are **hashed with SHA-256**
 * All message timestamps are logged
-* No plain text password storage
 * Server ignores undelivered messages after marking them delivered
 
 ---
