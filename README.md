@@ -1,6 +1,6 @@
 # 🔨 TermTalk
 
-A lightweight, terminal-based chat system built in Java — inspired by retro mail apps and gaming-style user IDs (like PUBG/CoC).
+A lightweight, terminal-based chat system built in Java — inspired by retro mail apps.
 Run the JAR on any system and chat instantly over a socket connection. Think of it as **your own terminal messenger**.
 
 ---
