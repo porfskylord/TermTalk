@@ -31,44 +31,109 @@ Run the JAR on any system and chat instantly over a socket connection. Think of 
 
 ---
 
-## 🛠️ How to Run
+## 🏗️ Project Structure
 
-### 💻 Server
-
-1. Build using Maven:
-
-   ```bash
-   mvn clean package
-   ```
-
-2. Run the server:
-
-   ```bash
-   java -cp target/termtalk.jar com.lordscave.server.TermTalkServer
-   ```
-
-3. Server listens on port `5656`
+```
+TermTalk/
+├── client/          # Client module
+│   └── src/
+│       └── main/
+│           └── java/
+│               └── com/lordscave/client/
+│                   ├── ConsoleUI.java
+│                   ├── MessageReceiver.java
+│                   └── TermTalkClient.java
+├── server/          # Server module
+│   ├── src/
+│   │   └── main/
+│   │       ├── java/
+│   │       │   └── com/lordscave/server/
+│   │       │       ├── ClientHandler.java
+│   │       │       ├── DBManager.java
+│   │       │       └── TermTalkServer.java
+│   │       └── resources/
+│   │           └── config.properties
+│   └── pom.xml
+├── shared/          # Shared module
+│   └── src/
+│       └── main/
+│           └── java/
+│               └── com/lordscave/shared/
+│                   └── (shared classes)
+├── .gitignore
+├── pom.xml          # Parent POM
+└── README.md
+```
 
 ---
 
-### 👤 Client
+## 🛠️ How to Build and Run
 
-1. Build the client JAR or use existing one.
-2. Run:
+### Prerequisites
+- Java 21 or later
+- Maven 3.6.0 or later
+- PostgreSQL 12 or later
 
-   ```bash
-   java -cp target/termtalk.jar com.lordscave.client.TermTalkClient
+### 1. Build the Project
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd TermTalk
+
+# Build all modules
+mvn clean package
+```
+
+### 2. Configure the Server
+
+1. Create a PostgreSQL database and update the configuration in:
    ```
+   server/src/main/resources/config.properties
+   ```
+
+2. Configure the following properties:
+   ```properties
+   db.url=jdbc:postgresql://localhost:5432/your_database
+   db.user=your_username
+   db.password=your_password
+   ```
+
+### 3. Start the Server
+
+```bash
+cd server/target
+java -jar TermTalk-Server-1.0-SNAPSHOT.jar
+```
+
+The server will start on port `5656` by default.
+
+### 4. Start Clients
+
+Open a new terminal for each client:
+
+```bash
+cd client/target
+java -jar TermTalk-Client-1.0-SNAPSHOT.jar
+```
+
+### 5. Using the Client
+
+1. **Register** a new account or **Login** with existing credentials
+2. **Send messages** to other users by their username
+3. **View your inbox** to see received messages
+4. **Exit** the application when done
 
 ---
 
-## ✉️ Features
+## ✨ Features
 
 * 📥 Inbox-style message delivery
 * 🔐 Secure password hashing (SHA-256)
-* 🥵 Handles multiple users using threads
-* 🆔 Unique User IDs like `akr3024`, `azd8743`
-* ✨ CLI-Only, no dependencies on UI frameworks
+* 🧵 Handles multiple users using threads
+* 🆔 Unique User IDs
+* 💻 CLI-Only interface
+* 🚀 Easy to deploy and run
 
 ---
 
@@ -76,14 +141,14 @@ Run the JAR on any system and chat instantly over a socket connection. Think of 
 
 * Passwords are **hashed with SHA-256**
 * All message timestamps are logged
-* Server ignores undelivered messages after marking them delivered
+* Server validates all incoming messages
+* Clean session management
 
 ---
 
 ## 🧑‍💻 Author
 
 Made with ☕ and ❤️ by Azad
-Project package root: `com.lordscave.termtalk`
 
 ---
 
